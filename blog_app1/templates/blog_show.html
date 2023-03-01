@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+       <style>
+        table { border: 1px solid black}
+        td {border: 1px solid black; padding: 5px}
+    </style>
+
+</head>
+
+   <h1>Witaj na blogu</h1>
+
+<body>
+ <a href="add/">Dodaj artykuł</a>
+    <h1>Lista artykułów</h1>
+    <table>
+        <tr>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Opis</th>
+        </tr>
+
+        {% for article in articles %}
+            <tr>
+                <td><a href=article/{{ article.pk }}/">{{ article.title }}</a></td>
+                 <td>{{ article.author }}</td>
+                <td>{{ article.description }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    <h1>Dodawanie komentarza:</h1>
+  <form method="post">
+      <p> {{ article.title }}</p>
+      <p>{{article.description}}</p>
+        <p><input name="author" type="text" placeholder="Autor"></p>
+        <p><input name="message" type="text" placeholder="Komentarz">{{ comment.message }}</p>
+        <p><input type="submit" value="Dodaj komentarz"></p>
+        {% csrf_token %}
+    </form>
+
+
+ <h1>Lista komentarzy:</h1>
+    {% for comment in article.comment_set.all %}
+        <p><h4>{{ comment.author }}</h4>
+            {{ comment.message }}
+        </p>
+    {% endfor %}
+</body>
+</html>

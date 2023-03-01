@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.description }}</p>
+
+    <p>
+        Dodaj komentarz
+        <form method="post">
+            <input name="author" placeholder="autor">
+            <input name="message" placeholder="komentarz">
+            <input type="submit" value="Dodaj komentarz">
+            {%  csrf_token %}
+    </form>
+    </p>
+
+    {% for comment in article.comment_set.all %}
+        <p><h4>{{ comment.author }}</h4>
+            {{ comment.message }}
+        </p>
+    {% endfor %}
+</body>

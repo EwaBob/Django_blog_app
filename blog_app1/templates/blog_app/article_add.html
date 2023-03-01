@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj artykuł</title>
+</head>
+<body>
+    <form method="post">
+        <input name="title" placeholder="tytuł">
+        <textarea name="description" placeholder="opis"></textarea>
+        <input type="submit" value="Dodaj artykuł">
+        {%  csrf_token %}
+    </form>
+</body>
+</html>
